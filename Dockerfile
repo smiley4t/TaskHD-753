@@ -1,5 +1,5 @@
 # Base image (starting point)
-FROM node:14
+FROM node:18
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 3000
 
 # Command to run the application
-CMD ["npm", "start"]
+CMD ["node", "app.js"]
