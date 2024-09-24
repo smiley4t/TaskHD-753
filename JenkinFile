@@ -10,7 +10,7 @@ pipeline {
 
                         // Your commands here
                     
-                bat 'docker build -t HD-753 .' //Build Docker image
+                bat 'docker build -t hd-753 .' //Build Docker image
                 bat 'npm install' // Install dependencies
             }
            
