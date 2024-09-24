@@ -1,0 +1,23 @@
+version: '3.8'  # Specify the version of the Docker Compose file format
+
+services:
+  web:
+    build:
+      context: .  # Use the current directory as the build context
+      dockerfile: Dockerfile  # Specify the Dockerfile to use for building the image
+    ports:
+      - "3000:3000"  # Map port 3000 on the host to port 3000 in the container
+    volumes:
+      - ./public_html:/usr/src/app/public_html  # Mount the public_html directory
+    environment:
+      NODE_ENV: production  # Set environment variables for the container
+    depends_on:
+      - db  # Specify that this service depends on the db service
+
+  db:
+    image: mongo:latest  # Use the latest MongoDB image from Docker Hub
+    volumes:
+      - dbdata:/data/db  # Persist database data using a named volume
+
+volumes:
+  dbdata:  # Define a named volume for database persistence
