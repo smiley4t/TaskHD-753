@@ -7,9 +7,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
+try {
+                        // Your commands here
+                    
                 sh 'docker build -t HD-753 .' //Build Docker image
                 sh 'npm install' // Install dependencies
-            }
+            } catch (Exception e) {
+                        echo "Error: ${e.getMessage()}"
         }
         stage('Test') {
             steps {
