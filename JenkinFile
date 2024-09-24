@@ -1,9 +1,13 @@
 pipeline {
     agent any
+   tools {
+        nodejs 'NodeJS 16.17.0' // Set the Node.js version that you configured in Jenkins
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'Building the project...'
+                sh 'docker build -t HD-753 .' //Build Docker image
                 sh 'npm install' // Install dependencies
             }
         }
@@ -15,8 +19,8 @@ pipeline {
         }
         stage('Code Quality Analysis') {
             steps {
-                echo 'Running SonarQube analysis...'
-                sh 'npx sonar-scanner' // Run SonarQube scanner
+                echo 'Running code quality analysis'
+                sh 'npm run lint' // Run eslint check
             }
         }
         stage('Deploy') {
@@ -31,7 +35,7 @@ pipeline {
                 script {
                     // Define the GitHub token and repository details
                     def githubToken = credentials('GITHUB_TOKEN') // Use Jenkins credentials to securely access your GitHub token
-                    def repo = 'your-username/your-repo' // Replace with your GitHub repository
+                    def repo = 'https://github.com/smiley4t/TaskHD-753.git' // Replace with your GitHub repository
                     def version = "v${env.BUILD_NUMBER}" // Tag versioning using build number
 
                     // Tag the current commit
