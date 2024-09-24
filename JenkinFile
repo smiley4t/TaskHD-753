@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                sh 'npm install' // Install dependencies
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'npm test' // Run tests
+            }
+        }
+        stage('Code Quality Analysis') {
+            steps {
+                echo 'Running SonarQube analysis...'
+                sh 'npx sonar-scanner' // Run SonarQube scanner
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying to test/staging environment...'
+                sh 'docker-compose up -d' // Start services defined in docker-compose.yml
+            }
+        }
+        stage('Release') {
+            steps {
+                echo 'Creating a release on GitHub...'
+                script {
+                    // Define the GitHub token and repository details
+                    def githubToken = credentials('GITHUB_TOKEN') // Use Jenkins credentials to securely access your GitHub token
+                    def repo = 'your-username/your-repo' // Replace with your GitHub repository
+                    def version = "v${env.BUILD_NUMBER}" // Tag versioning using build number
+
+                    // Tag the current commit
+                    sh "git tag ${version}"
+                    sh "git push origin ${version}"
+
+                    // Create a release on GitHub
+                    def response = sh(script: "curl -X POST -H 'Authorization: token ${githubToken}' -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/${repo}/releases -d '{\"tag_name\":\"${version}\", \"name\":\"Release ${version}\", \"body\":\"Release description for ${version}\"}'", returnStdout: true)
+                    echo "Response: ${response}" // Optional: log the response for debugging
+                }
+            }
+        }
+    }
+}
