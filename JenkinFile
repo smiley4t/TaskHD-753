@@ -38,7 +38,7 @@ pipeline {
                 echo 'Creating a release on GitHub...'
                 script {
                     // Define the GitHub token and repository details
-                    def githubToken = credentials('GITHUB_TOKEN') // Use Jenkins credentials to securely access your GitHub token
+                    def githubToken = credentials('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') // Use Jenkins credentials to securely access your GitHub token
                     def repo = 'https://github.com/smiley4t/TaskHD-753.git' // Replace with your GitHub repository
                     def version = "v${env.BUILD_NUMBER}" // Tag versioning using build number
 
