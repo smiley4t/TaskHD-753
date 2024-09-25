@@ -8,11 +8,16 @@ app.use(express.json());
 // Tell our application to serve all the files under the `public_html` directory
 app.use(express.static('public_html'))
 app.post('/feedback', (req, res) => {
-  const { name, feedback } = req.body;
-  if (!name || !feedback) {
-    return res.status(400).send('Missing required fields');
+  try {
+    const { name, feedback } = req.body;
+    if (!name || !feedback) {
+      return res.status(400).send('Missing required fields');
+    }
+    res.status(200).send('Feedback received');
+  } catch (error) {
+    console.error('Internal Server Error:', error);
+    res.status(500).send('Internal Server Error');
   }
-  res.status(200).send('Feedback received');
 });
 
 // Tell our application to listen to requests at port 3000 on the localhost
