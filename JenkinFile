@@ -31,6 +31,8 @@ pipeline {
             steps {
                 echo 'Deploying to test/staging environment...'
                 bat 'docker-compose up -d' // Start services defined in docker-compose.yml
+                bat 'docker-compose down' //Stop the containers after tests are done
+
             }
         }
         stage('Release') {
