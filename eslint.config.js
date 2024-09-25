@@ -15,7 +15,7 @@ module.exports = {
   
  
   rules: {
-    'linebreak-style': ['error', 'unix'], // Enforce Unix linebreaks
+ 
     'quotes': ['error', 'single'],        // Enforce single quotes
     'semi': ['error', 'always'],          // Enforce semicolons
     'no-unused-vars': ['warn'],           // Warn on unused variables
