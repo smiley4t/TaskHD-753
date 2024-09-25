@@ -9,9 +9,7 @@ module.exports = {
     },
     ecmaVersion: 12, // Specify the ECMAScript version
   },
-  extends: [
-    'eslint:recommended', // Use the recommended rules from ESLint
-  ],
+  
   parserOptions: {
     ecmaVersion: 12,      // Allow modern ECMAScript features
     sourceType: 'module', // Allows using imports
