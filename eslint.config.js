@@ -1,10 +1,15 @@
 
 module.exports = {
-    env: {
-        browser: true, // Browser global variables
-        es6: true,  // ECMAScript 2021 features
-        node: true,    // Node.js global variables and Node.js scoping
-    },
+    files: ['**/*.js'],
+    languageOptions: {
+      // Defining global variables previously declared in the "env" key
+      globals: {
+        node: true, // Node.js environment
+        es6: true,  // ECMAScript 6 globals
+      },
+      // Specify the ECMAScript version to use (you can adjust this based on your project)
+      
+    
     extends: [
         'eslint:recommended', // Use the recommended rules from ESLint
     ],
