@@ -7,13 +7,13 @@ module.exports = {
       node: true, // Node.js environment
       es6: true,  // ECMAScript 6 globals
     },
-    ecmaVersion: 12, // Specify the ECMAScript version
+    ecmaVersion: 12,
+    parserOptions: {
+        sourceType: 'module', // Allows using imports
+      },// Specify the ECMAScript version
   },
   
-  parserOptions: {
-    ecmaVersion: 12,      // Allow modern ECMAScript features
-    sourceType: 'module', // Allows using imports
-  },
+ 
   rules: {
     'linebreak-style': ['error', 'unix'], // Enforce Unix linebreaks
     'quotes': ['error', 'single'],        // Enforce single quotes
