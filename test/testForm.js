@@ -1,13 +1,13 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const index = require('../index'); 
+const app = require('../index'); 
 const expect = chai.expect;
 
 chai.use(chaiHttp);
 
 describe('Feedback Form', () => {
     it('should submit feedback and receive a success response', (done) => {
-        chai.request(index)
+        chai.request(app)
             .post('/submit-feedback') // Replace with your form's action URL
             .send({
                 name: 'John Doe',
@@ -23,7 +23,7 @@ describe('Feedback Form', () => {
     });
 
     it('should return an error for missing fields', (done) => {
-        chai.request(index)
+        chai.request(app)
             .post('/submit-feedback')
             .send({
                 name: '', // Missing name
