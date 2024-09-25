@@ -4,7 +4,7 @@ const express = require('express')
 // Create a new web application by calling the express function
 const app = express()
 const port = 3000
-
+app.use(express.json()); 
 // Tell our application to serve all the files under the `public_html` directory
 app.use(express.static('public_html'))
 app.post('/feedback', (req, res) => {
