@@ -47,7 +47,7 @@ pipeline {
                     bat "git push origin ${version}"
 
                     // Create a release on GitHub
-                    def response = bat(script: "curl -X POST -H 'Authorization: token ${githubToken}' -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/${repo}/releases -d '{\"tag_name\":\"${version}\", \"name\":\"Release ${version}\", \"body\":\"Release description for ${version}\"}'", returnStdout: true)
+                    def response = bat(script: "curl -X POST -H 'Authorization: token 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' -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/${repo}/releases -d '{\"tag_name\":\"${version}\", \"name\":\"Release ${version}\", \"body\":\"Release description for ${version}\"}'", returnStdout: true)
                     echo "Response: ${response}" // Optional: log the response for debugging
                 }
             }
