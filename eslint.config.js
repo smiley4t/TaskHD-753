@@ -24,4 +24,4 @@ module.exports = {
         'no-unused-vars': ['warn'],             // Warn on unused variables
         'no-console': 'off',                     // Allow console statements (or change to 'warn')
     },
-};
+}
