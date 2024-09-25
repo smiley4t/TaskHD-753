@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 describe('Feedback Form', () => {
     it('should submit feedback and receive a success response', (done) => {
         chai.request(app)
-            .post('/submit-feedback') // Replace with your form's action URL
+            .post('/feedback') // Replace with your form's action URL
             .send({
                 name: 'John Doe',
                 favourite: 'Vanilla',
@@ -24,7 +24,7 @@ describe('Feedback Form', () => {
 
     it('should return an error for missing fields', (done) => {
         chai.request(app)
-            .post('/submit-feedback')
+            .post('/feedback')
             .send({
                 name: '', // Missing name
                 favourite: 'Chocolate',
