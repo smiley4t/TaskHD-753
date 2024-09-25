@@ -7,6 +7,13 @@ const port = 3000
 
 // Tell our application to serve all the files under the `public_html` directory
 app.use(express.static('public_html'))
+app.post('/feedback', (req, res) => {
+  const { name, feedback } = req.body;
+  if (!name || !feedback) {
+    return res.status(400).send('Missing required fields');
+  }
+  res.status(200).send('Feedback received');
+});
 
 // Tell our application to listen to requests at port 3000 on the localhost
 app.listen(port, ()=> {
