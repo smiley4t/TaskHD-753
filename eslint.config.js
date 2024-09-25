@@ -1,4 +1,4 @@
-
+import eslintRecommended from 'eslint/conf/eslint-recommended.js'; // Import the recommended config
 module.exports = {
   files: ['**/*.js'], // Files to lint
   languageOptions: {
