@@ -2,7 +2,7 @@
 module.exports = {
     env: {
         browser: true, // Browser global variables
-        es2021: true,  // ECMAScript 2021 features
+        es6: true,  // ECMAScript 2021 features
         node: true,    // Node.js global variables and Node.js scoping
     },
     extends: [
